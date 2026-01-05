@@ -1,0 +1,5 @@
+[build]
+root = "video_downloader"
+
+[deploy]
+startCommand = "./start.sh"
