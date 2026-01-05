@@ -103,26 +103,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Caching - Use Redis only if REDIS_URL is available
-REDIS_URL = os.environ.get('REDIS_URL')
 
-if REDIS_URL:
-    CACHES = {
-        'default': {
-            'BACKEND': 'django_redis.cache.RedisCache',
-            'LOCATION': REDIS_URL,
-            'OPTIONS': {
-                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-                'CONNECTION_POOL_KWARGS': {'max_connections': 50}
-            }
-        }
-    }
-else:
-    # Fallback to local memory cache for development
-    CACHES = {
-        'default': {
-            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        }
-    }
 
 # yt-dlp settings
 YTDLP_ENABLE_IMPERSONATION = True
@@ -132,13 +113,4 @@ YTDLP_TIKTOK_API_HOSTNAMES = [
     "api16-normal-c-useast1a.tiktokv.com",
 ]
 
-# Celery - Only configure if Redis is available
-if REDIS_URL:
-    CELERY_BROKER_URL = REDIS_URL
-    CELERY_RESULT_BACKEND = REDIS_URL
-    CELERY_BEAT_SCHEDULE = {
-        'clear-media-every-5-minutes': {
-            'task': 'downloader.tasks.clear_media_folder',
-            'schedule': crontab(minute='*/5'),
-        },
-    }
+#
