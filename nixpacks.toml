@@ -2,10 +2,7 @@
 nixPkgs = ["python311"]
 
 [phases.install]
-cmds = ["pip install -r video_downloader/requirements.txt"]
-
-[phases.build]
-cmds = ["cd video_downloader && python manage.py collectstatic --noinput"]
+cmds = ["pip install -r requirements.txt"]
 
 [start]
 cmd = "cd video_downloader && python manage.py migrate --noinput && gunicorn video_downloader.wsgi:application --bind 0.0.0.0:$PORT --workers 3 --threads 2"

@@ -1,9 +1,5 @@
 [build]
-root = "video_downloader"
+builder = "nixpacks"
 
 [deploy]
-startCommand = """
-python manage.py migrate --noinput && 
-python manage.py collectstatic --noinput && 
-gunicorn video_downloader.wsgi:application --bind 0.0.0.0:$PORT --workers 3 --threads 2 --timeout 0
-"""
+startCommand = "cd video_downloader && python manage.py migrate --noinput && gunicorn video_downloader.wsgi:application --bind 0.0.0.0:$PORT"
