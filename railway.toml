@@ -2,4 +2,13 @@
 root = "video_downloader"
 
 [deploy]
-startCommand = "./start.sh"
+startCommand = "python manage.py migrate --noinput && python manage.py collectstatic --noinput && gunicorn video_downloader.wsgi:application --bind 0.0.0.0:$PORT --workers 3 --threads 2 --timeout 0"
+```
+
+## 3. Verify your requirements.txt
+
+Make sure `video_downloader/requirements.txt` includes:
+```
+Django>=4.0
+gunicorn
+whitenoise
