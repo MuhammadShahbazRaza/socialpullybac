@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: video-downloader-api
+    env: python
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn video_downloader.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: video_downloader.settings
