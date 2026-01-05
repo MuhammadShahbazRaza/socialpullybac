@@ -1,8 +1,0 @@
-[phases.setup]
-nixPkgs = ["python311"]
-
-[phases.install]
-cmds = ["cd video_downloader && pip install -r requirements.txt"]
-
-[start]
-cmd = "cd video_downloader && python manage.py migrate --noinput && gunicorn video_downloader.wsgi:application --bind 0.0.0.0:$PORT --workers 3 --timeout 120"
