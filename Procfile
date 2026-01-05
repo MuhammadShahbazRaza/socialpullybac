@@ -1,1 +1,2 @@
-cd video_downloader && python manage.py migrate && gunicorn video_downloader.wsgi --log-file -
+web: cd video_downloader && gunicorn video_downloader.wsgi:application --bind 0.0.0.0:$PORT --workers 3
+release: cd video_downloader && python manage.py migrate --noinput
