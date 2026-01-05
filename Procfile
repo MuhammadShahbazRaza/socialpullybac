@@ -1,0 +1,1 @@
+cd video_downloader && python manage.py migrate && gunicorn video_downloader.wsgi --log-file -
