@@ -146,11 +146,6 @@ CACHES = {
     }
 }
 
-# Increase database connection pool
-
-import os
-BASE_DIR = Path(__file__).resolve().parent.parent
-YTDLP_COOKIES_FILE = os.path.join(BASE_DIR, '/Users/laptopc/Downloads/yt_and_autmation/video_downloader/cookies.txt')
 
 
 # settings.py
