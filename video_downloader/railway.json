@@ -1,0 +1,11 @@
+{
+  "build": {
+    "builder": "NIXPACKS",
+    "buildCommand": "pip install -r requirements.txt && cd video_downloader && python manage.py collectstatic --noinput"
+  },
+  "deploy": {
+    "startCommand": "cd video_downloader && python manage.py migrate && gunicorn video_downloader.wsgi:application --bind 0.0.0.0:$PORT --workers 1 --timeout 300",
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
+  }
+}
