@@ -1,2 +1,2 @@
-web: gunicorn video_downloader.wsgi:application --bind 0.0.0.0:$PORT --workers 1 --timeout 300
-release: python manage.py migrate && python manage.py collectstatic --noinput
+web: gunicorn --chdir video_downloader video_downloader.wsgi:application --bind 0.0.0.0:$PORT --workers 1 --timeout 300
+release: python video_downloader/manage.py migrate && python video_downloader/manage.py collectstatic --noinput
